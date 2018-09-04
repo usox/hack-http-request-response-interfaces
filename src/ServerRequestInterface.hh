@@ -76,7 +76,7 @@ interface ServerRequestInterface extends RequestInterface {
    * typically derived from PHP's $_SERVER superglobal. The data IS NOT
    * REQUIRED to originate from $_SERVER.
    */
-  public function getServerParams(): dict<string, mixed>;
+  public function getServerParams(): ServerParamInterface;
 
   /**
    * Retrieve cookies.
