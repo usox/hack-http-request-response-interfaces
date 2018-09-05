@@ -179,15 +179,9 @@ interface ServerRequestInterface extends RequestInterface {
    * or multipart/form-data, and the request method is POST, this method MUST
    * return the contents of $_POST.
    *
-   * Otherwise, this method may return any results of deserializing
-   * the request body content; as parsing returns structured content, the
-   * potential types MUST be arrays or objects only. A null value indicates
-   * the absence of body content.
-   *
-   * @return null|array|object The deserialized body parameters, if any.
-   *     These will typically be an array or object.
+   * Otherwise, this method MUST return an empty dict.
    */
-  public function getParsedBody(): mixed;
+  public function getPostBody(): dict<string, string>;
 
   /**
    * Return an instance with the specified body parameters.
