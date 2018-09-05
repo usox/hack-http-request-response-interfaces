@@ -205,11 +205,6 @@ interface ServerRequestInterface extends RequestInterface {
    * immutability of the message, and MUST return an instance that has the
    * updated body parameters.
    *
-   * @param null|array|object $data The deserialized body data. This will
-   *     typically be in an array or object.
-   * @return static
-   * @throws \InvalidArgumentException if an unsupported argument type is
-   *     provided.
    */
-  public function withParsedBody(mixed $data): this;
+  public function withPostBody(dict<string, string> $data): this;
 }
