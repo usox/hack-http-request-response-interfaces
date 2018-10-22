@@ -102,7 +102,7 @@ interface ServerRequestInterface extends RequestInterface {
    * immutability of the message, and MUST return an instance that has the
    * updated cookie values.
    *
-   * @param array $cookies Array of key/value pairs representing cookies.
+   * @param array $cookies Dictionary of key/value pairs representing cookies.
    * @return static
    */
   public function withCookieParams(dict<string, string> $cookies): this;
@@ -157,7 +157,7 @@ interface ServerRequestInterface extends RequestInterface {
    * @return array An array tree of UploadedFileInterface instances; an empty
    *     array MUST be returned if no data is present.
    */
-  public function getUploadedFiles(): mixed;
+  public function getUploadedFiles(): vec<UploadedFileInterface>;
 
   /**
    * Create a new instance with the specified uploaded files.
@@ -166,11 +166,11 @@ interface ServerRequestInterface extends RequestInterface {
    * immutability of the message, and MUST return an instance that has the
    * updated body parameters.
    *
-   * @param array $uploadedFiles An array tree of UploadedFileInterface instances.
+   * @param array $uploadedFiles A list of UploadedFileInterface instances.
    * @return static
    * @throws \InvalidArgumentException if an invalid structure is provided.
    */
-  public function withUploadedFiles(mixed $uploadedFiles): this;
+  public function withUploadedFiles(vec<UploadedFileInterface> $uploadedFiles): this;
 
   /**
    * Retrieve any parameters provided in the request body.
