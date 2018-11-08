@@ -177,34 +177,14 @@ interface ServerRequestInterface extends RequestInterface {
    *
    * If the request Content-Type is either application/x-www-form-urlencoded
    * or multipart/form-data, and the request method is POST, this method MUST
-   * return the contents of $_POST.
+   * return the key-value pairs.
    *
-   * Otherwise, this method MUST return an empty dict.
+   * Otherwise, it will return the empty dict.
    */
-  public function getPostBody(): dict<string, string>;
+  public function getParsedBody(): dict<string, string>;
 
   /**
    * Return an instance with the specified body parameters.
-   *
-   * These MAY be injected during instantiation.
-   *
-   * If the request Content-Type is either application/x-www-form-urlencoded
-   * or multipart/form-data, and the request method is POST, use this method
-   * ONLY to inject the contents of $_POST.
-   *
-   * The data IS NOT REQUIRED to come from $_POST, but MUST be the results of
-   * deserializing the request body content. Deserialization/parsing returns
-   * structured data, and, as such, this method ONLY accepts arrays or objects,
-   * or a null value if nothing was available to parse.
-   *
-   * As an example, if content negotiation determines that the request data
-   * is a JSON payload, this method could be used to create a request
-   * instance with the deserialized parameters.
-   *
-   * This method MUST be implemented in such a way as to retain the
-   * immutability of the message, and MUST return an instance that has the
-   * updated body parameters.
-   *
    */
-  public function withPostBody(dict<string, string> $data): this;
+  public function withParsedBody(dict<string, string> $data): this;
 }
